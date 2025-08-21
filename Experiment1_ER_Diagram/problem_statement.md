@@ -51,7 +51,8 @@ Design a database for patient management, appointments, medical records, and bil
 University / Hospital (choose one)
 
 ## ER Diagram:
-![ER Diagram](er_diagram.png)
+![WhatsApp Image 2025-08-20 at 16 14 16_69d97c36](https://github.com/user-attachments/assets/ee0d7890-0a3b-4c65-8772-b6417ac63321)
+
 
 ## Entities and Attributes:
 - Entity1: Attributes
