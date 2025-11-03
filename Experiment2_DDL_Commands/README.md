@@ -105,123 +105,231 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should cascade updates and deletes.
+item_desc and rate should not accept NULL.
+-- 
 
 ```sql
--- Paste your SQL code below for Question 1
+CREATE TABLE item (
+    item_id TEXT PRIMARY KEY,
+    item_desc TEXT NOT NULL,
+    rate INTEGER NOT NULL,
+    icom_id TEXT(4) CHECK (LENGTH(icom_id)=4),
+    FOREIGN KEY (icom_id) REFERENCES company(com_id)
+        ON UPDATE CASCADE
+        ON DELETE CASCADE
+    
+);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="735" height="208" alt="image" src="https://github.com/user-attachments/assets/60e9ac06-cb0a-4f90-9eae-06dffb5d1b7f" />
+
 
 **Question 2**
----
--- Paste Question 2 here
+--
+Create a table named Attendance with the following constraints:
+AttendanceID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+AttendanceDate as DATE.
+Status as TEXT should be one of 'Present', 'Absent', 'Leave'.
+-- 
 
 ```sql
--- Paste your SQL code below for Question 2
+CREATE TABLE Attendance(
+    AttendanceID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    AttendanceDate date,
+    Status TEXT CHECK (Status IN ('Present','Absent','Leave')),
+    FOREIGN KEY(EmployeeID) REFERENCES Employees(EmployeeID)
+    
+);
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="734" height="152" alt="image" src="https://github.com/user-attachments/assets/6d6eb8d4-b3a0-4b53-b84b-436ef2b6a0a7" />
+
 
 **Question 3**
----
--- Paste Question 3 here
+--
+Create a table named Bonuses with the following constraints:
+BonusID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+BonusAmount as REAL should be greater than 0.
+BonusDate as DATE.
+Reason as TEXT should not be NULL.
+-- 
 
 ```sql
--- Paste your SQL code below for Question 3
+CREATE TABLE Bonuses(
+    BonusID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    BonusAmount REAL check(BonusAmount>0),
+    BonusDate DATE,
+    Reason TEXT NOT NULL,
+    FOREIGN KEY (EmployeeID) REFERENCES  Employees(EmployeeID) 
+);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="731" height="197" alt="image" src="https://github.com/user-attachments/assets/e3dec956-2b11-49f4-b75f-37848fe5f94d" />
+
 
 **Question 4**
----
--- Paste Question 4 here
+--
+Create a new table named item with the following specifications and constraints:
+item_id as TEXT and as primary key.
+item_desc as TEXT.
+rate as INTEGER.
+icom_id as TEXT with a length of 4.
+icom_id is a foreign key referencing com_id in the company table.
+The foreign key should set NULL on updates and deletes.
+item_desc and rate should not accept NULL.
+-- 
 
 ```sql
--- Paste your SQL code below for Question 4
+CREATE TABLE item (
+    item_id TEXT PRIMARY KEY,
+    item_desc TEXT NOT NULL,
+    rate INTEGER NOT NULL,
+    icom_id TEXT(4) CHECK (LENGTH(icom_id)=4),
+    FOREIGN KEY (icom_id) REFERENCES company(com_id)
+        ON UPDATE SET NULL
+        ON DELETE SET NULL
+        
+);
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="742" height="209" alt="image" src="https://github.com/user-attachments/assets/49d38c83-1c5c-4e0e-bae5-cb7c12a274b3" />
+
 
 **Question 5**
----
--- Paste Question 5 here
+--
+Create a table named Employees with the following columns:
+
+EmployeeID as INTEGER
+FirstName as TEXT
+LastName as TEXT
+HireDate as DATE
+-- 
 
 ```sql
--- Paste your SQL code below for Question 5
+CREATE TABLE Employees (
+    EmployeeID INTEGER,
+    FirstName TEXT, 
+    LastName TEXT,
+    HireDate DATE
+);
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="736" height="144" alt="image" src="https://github.com/user-attachments/assets/2e92a8fa-5caa-43b1-bbc0-ac33c4e321c9" />
+
 
 **Question 6**
----
--- Paste Question 6 here
+--
+Insert all customers from Old_customers into Customers
+
+Table attributes are CustomerID, Name, Address, Email
+-- 
 
 ```sql
--- Paste your SQL code below for Question 6
+INSERT into Customers(CustomerID, Name, Address, Email) SELECT CustomerID, Name, Address, Email FROM Old_customers;
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="739" height="123" alt="image" src="https://github.com/user-attachments/assets/c8ff8504-bc64-473a-8796-9818c48a459c" />
+
 
 **Question 7**
----
--- Paste Question 7 here
+--
+Write a SQL Query  to change the name of attribute "name" to "first_name"  and add mobilenumber as number ,DOB as Date in the table Companies. 
+-- 
 
 ```sql
--- Paste your SQL code below for Question 7
+ALTER table Companies rename column name TO first_name;
+ALTER table Companies add column mobilenumber number;
+ALTER table Companies add column DOB Date;
+
+ 
+ 
 ```
 
 **Output:**
 
-![Output7](output.png)
+  <img width="735" height="228" alt="image" src="https://github.com/user-attachments/assets/74e80aab-5683-46f6-bc59-620857f2d04a" />
+
 
 **Question 8**
----
--- Paste Question 8 here
+--
+Create a table named Bonuses with the following constraints:
+BonusID as INTEGER should be the primary key.
+EmployeeID as INTEGER should be a foreign key referencing Employees(EmployeeID).
+BonusAmount as REAL should be greater than 0.
+BonusDate as DATE.
+Reason as TEXT should not be NULL.
+-- 
 
 ```sql
--- Paste your SQL code below for Question 8
+CREATE TABLE Bonuses(
+    BonusID INTEGER PRIMARY KEY,
+    EmployeeID INTEGER,
+    BonusAmount REAL check(BonusAmount>0),
+    BonusDate DATE,
+    Reason TEXT NOT NULL,
+    FOREIGN KEY (EmployeeID) REFERENCES  Employees(EmployeeID) 
+);
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="734" height="238" alt="image" src="https://github.com/user-attachments/assets/df078f8b-09ed-4d8b-972c-e36ad4eed6aa" />
+
 
 **Question 9**
----
--- Paste Question 9 here
+--
+In the Student_details table, insert a student record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
+-- 
 
 ```sql
--- Paste your SQL code below for Question 9
+INSERT INTO student_details (RollNo,Name,Gender,Subject,MARKS) VALUES (205, 'Olivia Green','F',NULL,NULL);
+INSERT INTO student_details (RollNo,Name,Gender,Subject,MARKS) VALUES (207 ,'Liam Smith','M','Mathematics',85); 
+INSERT INTO student_details (RollNo,Name,Gender,Subject,MARKS) VALUES (208 ,'Sophia Johnson','F','Science',NULL);
+ 
+
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="739" height="181" alt="image" src="https://github.com/user-attachments/assets/d5c7d15f-1a2f-4b84-a1a4-4f9cf1eb5c3d" />
+
 
 **Question 10**
----
--- Paste Question 10 here
+--
+Insert a new product with ProductID 101, Name Laptop, Category Electronics, Price 1500, and Stock 50 into the Products table.
+-- 
 
 ```sql
--- Paste your SQL code below for Question 10
+INSERT INTO Products (ProductID,Name,Category,Price,Stock) VALUES (101,'Laptop','Electronics',1500,50);
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="738" height="98" alt="image" src="https://github.com/user-attachments/assets/974da084-ec09-427c-a143-99254105f767" />
+
 
 
 ## RESULT
